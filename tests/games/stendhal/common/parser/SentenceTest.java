@@ -346,6 +346,30 @@ public class SentenceTest {
 	}
 
 	/**
+	 * Test for NameSearch
+	 */
+	@Test
+	public final void testNameSearch() {
+		Set<String> names = new HashSet<String>();
+		names.add("pestle");
+		names.add("mortar");
+		names.add("cow");
+		names.add("horse");
+		NameSearch nameSearch = new NameSearch(names);
+
+		Expression expression = new Expression("Garbagess");
+		assertEquals(nameSearch.search(expression), false);
+
+		// TEST: We dont find it and the singular don't match
+
+
+		// TEST: special case to handle misspelled "double" plurals
+
+
+		// TEST: now check for end matches with the "double singular"
+	}
+
+	/**
 	 * Test for findMatchingName() with plurals.
 	 */
 	@Test

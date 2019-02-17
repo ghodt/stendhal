@@ -19,6 +19,8 @@ import static java.lang.Math.ceil;
 
 public class AdHocCoverage {
 
+
+    private final String PATH_NAME = "F:\\kth\\reports\\";
     private String FILE_NAME;
 
     private int[] branches;
@@ -29,7 +31,7 @@ public class AdHocCoverage {
      * @param branchAmount total amount of branches in method
      */
     public AdHocCoverage(String method, int branchAmount) {
-        FILE_NAME = "F:\\kth\\reports\\" + method + ".txt";
+        FILE_NAME = PATH_NAME + method + ".txt";
         branches = new int[branchAmount];
         Arrays.fill(branches, 0);
 
@@ -63,7 +65,7 @@ public class AdHocCoverage {
      */
     private double calculateCoverage() {
         int reached = 0;
-        for (int i = 2; i < branches.length; i++) {
+        for (int i = 0; i < branches.length; i++) {
             if (branches[i] > 0) {
                 reached += 1;
             }
@@ -112,7 +114,7 @@ public class AdHocCoverage {
         fw.write(System.lineSeparator()); //new line
         fw.write(String.format("Branches: %d", branches.length));
         fw.write(System.lineSeparator()); //new line
-        fw.write(String.format("Reached: %d", (int)ceil(branches.length*coverage)+1));
+        fw.write(String.format("Reached: %d", (int)ceil(branches.length*coverage)));
         fw.write(System.lineSeparator()); //new line
         fw.write("#");
         fw.write(System.lineSeparator()); //new line
