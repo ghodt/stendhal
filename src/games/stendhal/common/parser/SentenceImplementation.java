@@ -16,6 +16,7 @@ import java.util.Iterator;
 
 import games.stendhal.common.ErrorDrain;
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.tools.statistics.AdHocCoverage;
 
 /**
  * SentenceImplementation contains the implementation details of building Sentence objects.
@@ -668,6 +669,11 @@ public final class SentenceImplementation extends Sentence {
      * @return number of merges performed
      */
     private int mergeThreeWordExpressions() {
+        /*
+        *   AD-HOC-COVERAGE
+         */
+        AdHocCoverage ahc = new AdHocCoverage("mergeThreeWordExpressions", 17);
+
         int changes = 0;
 
         // loop until no more simplifications can be made
@@ -677,60 +683,114 @@ public final class SentenceImplementation extends Sentence {
 
             changed = false;
 
-            if (it.hasNext()) {
+            if (it.hasNext()) { // ID: 1
+                // COVERAGE
+                ahc.branchReached(1);
+                // COVERAGE
                 Expression third = it.next();
 
-                if (it.hasNext()) {
+                if (it.hasNext()) { // ID: 2
+                    // COVERAGE
+                    ahc.branchReached(2);
+                    // COVERAGE
                     Expression first = null;
                     Expression second = third;
                     third = it.next();
 
                     // loop over all words of the sentence starting from left
-                    while (it.hasNext()) {
+                    while (it.hasNext()) { // ID: 3
+                        // COVERAGE
+                        ahc.branchReached(3);
+                        // COVERAGE
                         // Now look at three consecutive words.
                         first = second;
                         second = third;
                         third = it.next();
 
                         // don't merge if the break flag is set
-                        if (first.getBreakFlag() || second.getBreakFlag()) {
+                        boolean id4 = first.getBreakFlag();
+                        boolean id5 = second.getBreakFlag();
+                        if (id4 || id5) { // ID: 4,5
+                            // COVERAGE
+                            if (id4) {
+                                ahc.branchReached(4);
+                            } else if (id5){
+                                ahc.branchReached(5);
+                            }
+                            // COVERAGE
                             continue;
                         }
 
                         // don't merge if there are joker expressions
-                        if (context.isForMatching()) {
-                            if (first.getNormalized().contains(Expression.JOKER)
-                                    || second.getNormalized().contains(Expression.JOKER)
-                                    || third.getNormalized().contains(Expression.JOKER)) {
-                                continue;
+                        if (context.isForMatching()) { // ID: 6
+                            // COVERAGE
+                            ahc.branchReached(6);
+                            // COVERAGE
+
+                            boolean id7 = first.getNormalized().contains(Expression.JOKER);
+                            boolean id8 = second.getNormalized().contains(Expression.JOKER);
+                            boolean id9 = third.getNormalized().contains(Expression.JOKER);
+                            if (id7 || id8 || id9) { // ID: 7,8,9
+                                if (id7) {
+                                    ahc.branchReached(7);
+                                } else if (id8){
+                                    ahc.branchReached(8);
+                                } else if (id9){
+                                    ahc.branchReached(9);
+                                }
+
+                            continue;
                             }
                         }
 
                         // merge "... of ..." expressions into one expression, preserving
                         // only the main word as merged normalized expression
-                        if (first.isObject() && second.getNormalized().equals("of") && third.isObject()) {
+                        boolean id10 = first.isObject();
+                        boolean id11 = second.getNormalized().equals("of");
+                        boolean id12 = third.isObject();
+                        if ( id10 && id11 && id12 ) { // ID: 10,11,12
+                            // COVERAGE
+                            ahc.branchReached(10);
+                            ahc.branchReached(11);
+                            ahc.branchReached(12);
+                            // COVERAGE
+
                             final String expr = first.getNormalized() + " of " + third.getNormalized();
 
                             // see if the expression has been normalized
-                            if (!Grammar.isNormalized(expr)) {
+                            if (!Grammar.isNormalized(expr)) { // ID: 13
+                                // COVERAGE
+                                ahc.branchReached(13);
+                                // COVERAGE
+
                                 first.mergeRight(second, false);
                                 expressions.remove(second);
                                 third.mergeLeft(first, false);
                                 expressions.remove(first);
                                 changed = true;
-                                break;
+
+                                // COVERAGE
+                                ahc.branchReached(14);
+                                // COVERAGE
+                                break; // ID: 14
                             }
                         }
                     }
                 }
             }
 
-            if (changed) {
+            if (changed) { // ID: 15
+                // COVERAGE
+                ahc.branchReached(15);
+                // COVERAGE
             	++changes;
             }
         } while (changed);
 
-        return changes;
+        // COVERAGE
+        ahc.branchReached(16);
+        // COVERAGE
+        return changes; // ID: 16
     }
 
 }
