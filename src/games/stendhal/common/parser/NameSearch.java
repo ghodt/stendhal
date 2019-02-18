@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Set;
 
 import games.stendhal.common.grammar.Grammar;
+import games.stendhal.tools.statistics.AdHocCoverage;
 
 /**
  * Returns structure for Sentence.findMatchingName().
@@ -26,7 +27,7 @@ import games.stendhal.common.grammar.Grammar;
 public final class NameSearch {
     NameSearch(final Set<String> names) {
         for(String name : names) {
-        	parsedNames.put(name, ConversationParser.parse(name));
+            parsedNames.put(name, ConversationParser.parse(name));
         }
 
         this.name = null;
@@ -45,87 +46,133 @@ public final class NameSearch {
      * @return true if we found a match
      */
     public boolean search(final Expression item) {
+        AdHocCoverage ahc = new AdHocCoverage("search", 19);
         // see if the word matches an item in our list
         boolean found = false;
 
         final String itemName = item.getNormalized();
 
         for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-        	if (e.getValue().matchesNormalized(itemName)) {
+            if (e.getValue().matchesNormalized(itemName)) { // ID: 0
+                // COVERAGE
+                ahc.branchReached(0);
                 name = e.getKey();
-        		found = true;
-        		break;
-        	}
-        }
-
-        if (!found) {
-	    	// see if instead the end matches, this is deliberately done afterwards because of bug #3285554
-        	found = searchEndMatch(itemName);
-        }
-
-    	// see if instead the plural matches
-        if (!found) {
-	        final String pluralName = Grammar.plural(itemName);
-	    	if (!pluralName.equals(itemName)) {
-	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-	            	if (e.getValue().matchesStartNormalized(pluralName)) {
-		                name = e.getKey();
-		        		found = true;
-		        		break;
-		        	}
-	            }
-            }
-
-	    	// now check for end matches with the plural
-	    	if (!found && !pluralName.equals(itemName)) {
-	        	found = searchEndMatch(pluralName);
+                found = true;
+                break;
             }
         }
 
-        if (!found) {
-        	// see if instead the singular matches
-	        final String singularName = Grammar.singular(itemName);
-	    	if (!singularName.equals(itemName)) {
-	            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-	            	if (e.getValue().matchesStartNormalized(singularName)) {
-		                name = e.getKey();
-		        		found = true;
-		        		break;
-		        	}
-	        	}
+        if (!found) { // ID: 1
+            // COVERAGE
+            ahc.branchReached(1);
+            // see if instead the end matches, this is deliberately done afterwards because of bug #3285554
+            found = searchEndMatch(itemName);
+        }
 
-		    	// now check for end matches with the singular
-		    	if (!found && !singularName.equals(itemName)) {
-			        found = searchEndMatch(singularName);
-		    	}
-	    	}
+        // see if instead the plural matches
+        if (!found) { // ID: 2
+            // COVERAGE
+            ahc.branchReached(2);
+            final String pluralName = Grammar.plural(itemName);
+            if (!pluralName.equals(itemName)) { // ID: 3
+                // COVERAGE
+                ahc.branchReached(3);
+                for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+                    if (e.getValue().matchesStartNormalized(pluralName)) { // ID: 4
+                        // COVERAGE
+                        ahc.branchReached(4);
+                        name = e.getKey();
+                        found = true;
+                        break;
+                    }
+                }
+            }
 
-	        if (!found) {
-	        	// special case to handle misspelled "double" plurals
-		        final String singular2 = Grammar.singular(singularName);
-		    	if (!singular2.equals(singularName)) {
-		            for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-		            	if (e.getValue().matchesStartNormalized(singular2)) {
-			                name = e.getKey();
-			        		found = true;
-			        		break;
-			        	}
-		        	}
-		    	}
+            // now check for end matches with the plural
+            if (!found && !pluralName.equals(itemName)) { // ID: 5,6
+                // COVERAGE
+                ahc.branchReached(5);
+                found = searchEndMatch(pluralName);
+            }
+            // EXTRA_COVERAGE
+            else {
+                ahc.branchReached(6);
+            }
+        }
 
-		    	// now check for end matches with the "double singular"
-		    	if (!found && !singular2.equals(itemName)) {
-		        	found = searchEndMatch(singular2);
-		    	}
-	        }
-    	}
+        if (!found) { // ID: 7
+            // COVERAGE
+            ahc.branchReached(7);
+            // see if instead the singular matches
+            final String singularName = Grammar.singular(itemName);
+            if (!singularName.equals(itemName)) { // ID: 8
+                // COVERAGE
+                ahc.branchReached(8);
+                for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+                    if (e.getValue().matchesStartNormalized(singularName)) { // ID: 9
+                        // COVERAGE
+                        ahc.branchReached(9);
+                        name = e.getKey();
+                        found = true;
+                        break;
+                    }
+                }
 
-    	if (found) {
+                // now check for end matches with the singular
+                if (!found && !singularName.equals(itemName)) { // ID: 10, 11
+                    // COVERAGE
+                    ahc.branchReached(10);
+                    found = searchEndMatch(singularName);
+                }
+                // EXTRA_COVERAGE
+                else {
+                    ahc.branchReached(11);
+                }
+            }
+
+            if (!found) { // ID: 12
+                // COVERAGE
+                ahc.branchReached(12);
+                // special case to handle misspelled "double" plurals
+                final String singular2 = Grammar.singular(singularName);
+                if (!singular2.equals(singularName)) { // ID: 13
+                    // COVERAGE
+                    ahc.branchReached(13);
+                    for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+                        if (e.getValue().matchesStartNormalized(singular2)) { // ID: 14
+                            // COVERAGE
+                            ahc.branchReached(14);
+                            name = e.getKey();
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+
+                // now check for end matches with the "double singular"
+                if (!found && !singular2.equals(itemName)) { // ID: 15, 16
+                    // COVERAGE
+                    ahc.branchReached(15);
+
+                    found = searchEndMatch(singular2);
+                }
+                // EXTRA_COVERAGE
+                else {
+                    ahc.branchReached(16);
+                }
+            }
+        }
+
+        if (found) { // ID: 17
+            // COVERAGE
+            ahc.branchReached(17);
             amount = item.getAmount();
             return true;
-    	} else {
-			return false;
-		}
+        } else { // ID: 18
+            // COVERAGE
+            ahc.branchReached(18);
+            return false;
+        }
     }
 
     /**
@@ -133,19 +180,19 @@ public final class NameSearch {
      * @param itemName
      * @return <code>true</true> if a match was found
      */
-	private boolean searchEndMatch(final String itemName) {
-		for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
-			Sentence parsed = e.getValue();
+    private boolean searchEndMatch(final String itemName) {
+        for(Map.Entry<String, Sentence> e : parsedNames.entrySet()) {
+            Sentence parsed = e.getValue();
 
-			if (itemName.endsWith(parsed.getOriginalText()) ||
-					itemName.endsWith(parsed.getNormalized())) {
-		        name = e.getKey();
-				return true;
-			}
-		}
+            if (itemName.endsWith(parsed.getOriginalText()) ||
+                    itemName.endsWith(parsed.getNormalized())) {
+                name = e.getKey();
+                return true;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
     /**
      * Return true if matching name found.
