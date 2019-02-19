@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.common.parser;
 
+import games.stendhal.tools.statistics.AdHocCoverage;
+
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -301,46 +303,62 @@ public class ExpressionMatcher {
      * @return true if two expression match
      */
     public boolean match(final Expression expr1, final Expression expr2) {
+
+        AdHocCoverage ahc = new AdHocCoverage("match", 14);
+
         // In type matching mode, the word type has to match exactly.
-        if (typeMatching) {
-            if (!expr1.getTypeString().equals(expr2.getTypeString())) {
+        if (typeMatching) { // ID: 1
+            ahc.branchReached(1);
+            if (!expr1.getTypeString().equals(expr2.getTypeString())) { // ID: 2
+                ahc.branchReached(2);
                 return false;
             }
         }
 
         // If the original expression matches, return true.
-        if (expr1.getOriginal().equals(expr2.getOriginal())) {
+        if (expr1.getOriginal().equals(expr2.getOriginal())) { // ID: 3
+            ahc.branchReached(3);
             return true;
         }
 
-        if (caseInsensitive) {
-            if (expr1.getOriginal().equalsIgnoreCase(expr2.getOriginal())) {
+        if (caseInsensitive) { // ID: 4
+            ahc.branchReached(4);
+            if (expr1.getOriginal().equalsIgnoreCase(expr2.getOriginal())) { // ID: 5
+                ahc.branchReached(5);
                 return true;
             }
         }
 
-        if (jokerMatching) {
+        if (jokerMatching) { // ID: 6
+            ahc.branchReached(6);
             return expr1.sentenceMatchExpression(expr2);
         }
 
-        if (similarMatching) {
-            if (SimilarExprMatcher.isSimilar(expr1.getOriginal(), expr2.getOriginal(), 0.1)) {
+        if (similarMatching) { // ID: 7
+            ahc.branchReached(7);
+            if (SimilarExprMatcher.isSimilar(expr1.getOriginal(), expr2.getOriginal(), 0.1)) { //ID: 8
+                ahc.branchReached(8);
                 return true;
             }
         }
 
         // If no exact match is required, compare the normalized expressions.
-        if (!exactMatching) {
-            if (expr2.getNormalized().equals(Expression.JOKER)) {
+        if (!exactMatching) { // ID: 9
+            ahc.branchReached(9);
+            if (expr2.getNormalized().equals(Expression.JOKER)) { // ID: 10
+                ahc.branchReached(10);
                 return true;
             }
 
-            if (expr1.getNormalized().equals(expr2.getNormalized())) {
+            if (expr1.getNormalized().equals(expr2.getNormalized())) { // ID: 11
+                ahc.branchReached(11);
                 return true;
             }
 
-            if (caseInsensitive) {
-                if (expr1.getNormalized().equalsIgnoreCase(expr2.getNormalized())) {
+            if (caseInsensitive) { // ID: 12
+                ahc.branchReached(12);
+                if (expr1.getNormalized().equalsIgnoreCase(expr2.getNormalized())) { // ID: 13
+                    ahc.branchReached(13);
                     return true;
                 }
             }

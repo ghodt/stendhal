@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observer;
 
+import games.stendhal.tools.statistics.AdHocCoverage;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Level;
@@ -288,7 +289,7 @@ public class Creature extends NPC {
 	 * 		List of items that the creature drops on death.
 	 * @param aiProfiles
 	 * 		Creature's behaviours.
-	 * @param noises.
+	 * @param noises
 	 * 		Sound effects used by the client when player is near creature.
 	 * @param respawnTime
 	 * 		How often creature respawns, in turns.
@@ -693,25 +694,36 @@ public class Creature extends NPC {
 	 * @return chosen enemy or null if no enemy was found.
 	 */
 	public RPEntity getNearestEnemy(final double range) {
+
+		/*
+		 *   AD-HOC-COVERAGE
+		 */
+
+		AdHocCoverage ahc = new AdHocCoverage("getNearestEnemy", 9);
+
 		// create list of enemies
 		final List<RPEntity> enemyList = getEnemyList();
-		if (enemyList.isEmpty()) {
+		if (enemyList.isEmpty()) { // ID: 1
+			ahc.branchReached(1);
 			return null;
 		}
 
 		// calculate the distance of all possible enemies
 		final Map<RPEntity, Double> distances = new HashMap<RPEntity, Double>();
 		for (final RPEntity enemy : enemyList) {
-			if (enemy == this) {
+			if (enemy == this) { // ID: 2
+				ahc.branchReached(2);
 				continue;
 			}
 
-			if (enemy.isInvisibleToCreatures()) {
+			if (enemy.isInvisibleToCreatures()) { // ID: 3
+				ahc.branchReached(3);
 				continue;
 			}
 
 			final double squaredDistance = this.squaredDistance(enemy);
-			if (squaredDistance <= (range * range)) {
+			if (squaredDistance <= (range * range)) { // ID: 4
+				ahc.branchReached(4);
 				distances.put(enemy, squaredDistance);
 			}
 		}
@@ -723,18 +735,22 @@ public class Creature extends NPC {
 			double shortestDistance = Double.MAX_VALUE;
 			for (final Map.Entry<RPEntity, Double> enemy : distances.entrySet()) {
 				final double distance = enemy.getValue();
-				if (distance < shortestDistance) {
+				if (distance < shortestDistance) { // ID: 5
+					ahc.branchReached(5);
 					chosen = enemy.getKey();
 					shortestDistance = distance;
 				}
 			}
 
-			if (shortestDistance >= 1) {
+			if (shortestDistance >= 1) { // ID: 6
+				ahc.branchReached(6);
 				final List<Node> path = Path.searchPath(this, chosen, getMovementRange());
-				if ((path == null) || path.isEmpty() && !strategy.canAttackNow(this, chosen)) {
+				if ((path == null) || path.isEmpty() && !strategy.canAttackNow(this, chosen)) { // ID: 7
+					ahc.branchReached(7);
 					distances.remove(chosen);
 					chosen = null;
-				} else {
+				} else { // ID: 8
+					ahc.branchReached(8);
 					// set the path. if not setMovement() will search a new one
 					setPath(new FixedPath(path, false));
 				}
