@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 import java.net.SocketException;
 
 import games.stendhal.bot.core.StandardClientFramework;
-import games.stendhal.tools.AdHocCoverage;
+import games.stendhal.tools.statistics.AdHocCoverage;
 import marauroa.common.game.RPAction;
 
 /**

@@ -14,7 +14,7 @@ package games.stendhal.server.entity.npc.action;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import games.stendhal.tools.AdHocCoverage;
+import games.stendhal.tools.statistics.AdHocCoverage;
 import org.apache.log4j.Logger;
 
 import games.stendhal.common.Rand;
