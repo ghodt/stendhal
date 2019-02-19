@@ -129,13 +129,17 @@ Report of old coverage: [OLD](https://github.com/ghodt/stendhal/blob/master/cove
 
 Report of new coverage: [NEW](https://github.com/ghodt/stendhal/blob/master/coverage-group21/New%20coverage%20data.txt)
 
-Test cases added:
-* [WordList.isNameCompatibleLastType test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L385)
-* [NameSearch::search test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L356)
-* [EquipRandomItemAction::equals test](https://github.com/ghodt/stendhal/blob/f463447fdb6abe4b6bf2bd125f1681c3c152a36c/tests/games/stendhal/client/actions/EquipRandomAmountOfItemActionTest.java)
-* [ShouterMain::main test](https://github.com/ghodt/stendhal/blob/3bb7ddc768d3a0d0b82f49b761bd4fddad19ec28/tests/games/stendhal/ShouterMainTest.java)
-* [Creature::getNearestEnemy test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/server/entity/creature/CreatureTest.java#L68)
-* [ExpressionMatcher::match test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/ExpressionMatcherTest.java#L124-L128)
+The table below contains links to the test functions that were improved, and the coverage data for their corresponding functions measured with our own tool and OpenClover before and after the tests were added. 
+
+| Function | OpenClover - old | OpenClover - new | Own tool - old | Own tool - new |
+|--|--|--|--|--|
+| [WordList.isNameCompatibleLastType test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L385) | 64.9% | - | 50% | 71.4% |
+| [NameSearch::search test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L356) | 67.1% | - | 63.2% | 78.9% |
+| [EquipRandomItemAction::equals test](https://github.com/ghodt/stendhal/blob/f463447fdb6abe4b6bf2bd125f1681c3c152a36c/tests/games/stendhal/client/actions/EquipRandomAmountOfItemActionTest.java) | 0% | - | 0% | 14.3% |
+| [ShouterMain::main test](https://github.com/ghodt/stendhal/blob/3bb7ddc768d3a0d0b82f49b761bd4fddad19ec28/tests/games/stendhal/ShouterMainTest.java) | 0% | - | 0% | 9.1% |
+| [Creature::getNearestEnemy test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/server/entity/creature/CreatureTest.java#L68) | 76.9% | - | 77.8% | 88.9% |
+| [ExpressionMatcher::match test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/ExpressionMatcherTest.java#L124-L128) | 91.7% | - | 78.6% | 85.6% |
+
 
 ## Refactoring
 
