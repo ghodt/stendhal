@@ -138,8 +138,9 @@ Test cases added:
 
 ## Refactoring
 
-*WordList::isNameCompatibleLastType*
-This method control if the last expression of a sentence is compatible with a given typeString. This method is only used by another public method, `registerName`. The methods complexity comes from it's repeated checks of equivalent states, i.e. 1+1=2 <-> 2=1+1.
+[WordList::isNameCompatibleLastType](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/WordList.java#L673)
+
+This method control if the last expression of a sentence is compatible with a given typeString. This method is only used by another public method, `registerName`. The methods complexity comes from it's repeated checks of equivalent states, i.e. 1+1=2 &harr; 2=1+1.
 
 To reduce complexity these double checks if necessary could be put into their own method. They check for one thing and could, therefore, be one method. Example of one such instance.
 
@@ -155,7 +156,7 @@ if (typeString.startsWith(lastType.getTypeString())) {
 This check could be turned into its own method, while this is no priority the function could look a lot cleaner and the purpose of it clearer if this refactoring would go through.
 
 
-*NameSearch::search*
+[NameSearch::search](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/NameSearch.java#L48)
 
 This method searches for an item to match the given `Expression` in a word list. The complexity arises from how the _expression_ is interpreted. It can have many forms, _normalized_, _plural_, _singular_ for example.
 
@@ -165,7 +166,7 @@ A simple way to refactor the code would be to control all the checks for each _e
 
 A more extensive refactoring would see the WordList be changed to a data structure that could find the match faster. An ordered list so that binary search could be performed would increase performance if _WordList_ is used with larger sets.
 
-*ShouterMain::main*
+[ShouterMain::main](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/bot/shouter/ShouterMain.java#L78)
 
 The function check the input arguments for the program and interprets them.
 
@@ -178,9 +179,6 @@ It checks all necessary variables are set.
 
 Things that could be done are to at least refactor the parsing and interpretation of the command arguments to its own function. You could have the validation in the refactored function or even divide refactor it to another function still. This would allow the parsing and interpretation code to be cleaner and more understandable. The validation function could also throw an exception, which would be caught by the main function, which would reduce code.
 
-
-
-git diff ...
 
 ## Effort spent
 
