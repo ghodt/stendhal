@@ -133,12 +133,12 @@ The table below contains links to the test functions that were improved, and the
 
 | Function | OpenClover - old | OpenClover - new | Own tool - old | Own tool - new |
 |--|--|--|--|--|
-| [WordList.isNameCompatibleLastType test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L385) | 64.9% | - | 50% | 71.4% |
-| [NameSearch::search test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L356) | 67.1% | - | 63.2% | 78.9% |
-| [EquipRandomItemAction::equals test](https://github.com/ghodt/stendhal/blob/f463447fdb6abe4b6bf2bd125f1681c3c152a36c/tests/games/stendhal/client/actions/EquipRandomAmountOfItemActionTest.java) | 0% | - | 0% | 14.3% |
-| [ShouterMain::main test](https://github.com/ghodt/stendhal/blob/3bb7ddc768d3a0d0b82f49b761bd4fddad19ec28/tests/games/stendhal/ShouterMainTest.java) | 0% | - | 0% | 9.1% |
-| [Creature::getNearestEnemy test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/server/entity/creature/CreatureTest.java#L68) | 76.9% | - | 77.8% | 88.9% |
-| [ExpressionMatcher::match test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/ExpressionMatcherTest.java#L124-L128) | 91.7% | - | 78.6% | 85.6% |
+| [WordList.isNameCompatibleLastType test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L385) | 64.9% | 87.2% | 50% | 71.4% |
+| [NameSearch::search test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L356) | 67.1% | 80.6% | 63.2% | 78.9% |
+| [EquipRandomItemAction::equals test](https://github.com/ghodt/stendhal/blob/f463447fdb6abe4b6bf2bd125f1681c3c152a36c/tests/games/stendhal/client/actions/EquipRandomAmountOfItemActionTest.java) | 0% | 14.3% | 0% | 14.3% |
+| [ShouterMain::main test](https://github.com/ghodt/stendhal/blob/3bb7ddc768d3a0d0b82f49b761bd4fddad19ec28/tests/games/stendhal/ShouterMainTest.java) | 0% | 9.1% | 0% | 9.1% |
+| [Creature::getNearestEnemy test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/server/entity/creature/CreatureTest.java#L68) | 76.9% | 82.7%| 77.8% | 88.9% |
+| [ExpressionMatcher::match test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/ExpressionMatcherTest.java#L124-L128) | 91.7% | 95.2% | 78.6% | 85.6% |
 
 
 ## Refactoring
