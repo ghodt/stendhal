@@ -44,29 +44,29 @@ The functions are mostly long since many of them contain a lot of `if` and `else
 
 ### Purpose
 
-[Grammar::singular](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L594)
-`Returns the singular form of the given noun if not already given in the singular form.`
+[Grammar::singular](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L594)\
+`Returns the singular form of the given noun if not already given in the singular form.`\
 The method is considered complex because the outcome very much depends on the input. The method has a lot of `if` statements in most cases for each special case.
 
-[RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)
-`creates the RPClass definitions, unless this was already done.`
+[RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)\
+`creates the RPClass definitions, unless this was already done.`\
 This is a creation method for a class object. It contains a lot of `if`statements because it controls if its input as already been initialized. First, it has a control section that makes sure it has not been initiated already, but it still needs to control every single method.
 
 
-[CreaturesXMLLoader::startElement](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/config/CreaturesXMLLoader.java#L173)
-`<no comments>`
+[CreaturesXMLLoader::startElement](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/config/CreaturesXMLLoader.java#L173)\
+`<no comments>`\
 Very hard to get a grasp on this method. This method is an `@overide` of DefaultHandler interface. This class is for processing an XML-file. Depending on what is in the file the output of the method will be different. [DefaultHandler documentations](http://tutorials.jenkov.com/java-xml/sax-defaulthandler.html)
 
-[Grammar::plural](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L466)
-`Returns the plural form of the given noun if not already given in the plural form.`
+[Grammar::plural](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L466)\
+`Returns the plural form of the given noun if not already given in the plural form.`\
 The function takes a string with a noun as an argument and returns the plural form of the word. The function checks if the noun ends with a certain suffix and then changes the suffix to the plural form and returns that. This function probably has to be long, since different suffixes have different plural forms, and you need to check all of them. The function is easy to understand, and the high complexity comes from having a lot of `else if`-statements. Not much refactoring could be done.
 
-[RPEntity::onChangedAdded](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/client/entity/RPEntity.java#L1134)
-`The object added/changed attribute(s).`
+[RPEntity::onChangedAdded](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/client/entity/RPEntity.java#L1134)\
+`The object added/changed attribute(s).`\
 The function has something to do with changes made to objects in the game. The function has the above comment above the declaration, but other than that it has no documentation and is very hard to understand. The function seems to deal with changes in a lot of different objects, so splitting the function into separate smaller functions for different objects and documenting the code better would make it easier to understand.
 
-[SentenceImplementation::mergeTwoWordExpressions](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/parser/SentenceImplementation.java#L493)
-`Merge two-word expressions into single expressions.`
+[SentenceImplementation::mergeTwoWordExpressions](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/parser/SentenceImplementation.java#L493)\
+`Merge two-word expressions into single expressions.`\
 The function merges words, but it’s not clear why. The function is somewhat documented, but it’s hard to understand for someone who doesn’t know about how sentences are handled and parsed in the code. It’s hard to tell how the function could be refactored since it’s hard to understand.
 
 ### Are exceptions taken into account in the given measurements?
@@ -75,15 +75,15 @@ No exceptions are used in the methods.
 
 ### Is the documentation clear w.r.t. all the possible outcomes?
 
-[Grammar::singular](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L594)
+[Grammar::singular](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L594)\
 Pretty clear. Every `if` ha a single return, it's basically a map function written in a   way. Some of the `if`-statements are not clear but they are. They are also divided into sections that are well documented.
 
 
-[RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)
+[RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)\
 Very little documentation, but the methods and variables are very verbose and don't really require more documentation.
 
 
-[CreaturesXMLLoader::startElement](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/config/CreaturesXMLLoader.java#L173)
+[CreaturesXMLLoader::startElement](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/config/CreaturesXMLLoader.java#L173)\
 This method is not well documented, it is impossible by looking at the method alone to figure out what exactly it does. It is used by something else in a very special way. Almost no line is documented in this method.
 
 ## Coverage
@@ -96,9 +96,9 @@ _OpenClover_ was well documented for several environments. We had no problem usi
 
 ### DYI
 
-Added manual coverage for six functions. a coverage class [AdHocCoverage](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/tools/statistics/AdHocCoverage.java#L20) was created and used. It is able to monitor when a methods branches have been reached and reports this to a file. The tool itself is not bounded by a complexity algorithm and is entierly dependent on it's implementation in the given method.
+A coverage class [AdHocCoverage](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/tools/statistics/AdHocCoverage.java#L20) was created and used. It is able to monitor when the branches in a method has been reached and writes a short coverage report to a file. The tool itself is not bounded by a complexity algorithm and is entierly dependent on it's implementation in the given method.
 
-To use the method import the `AdHocCoverage` class. In the start of the method declare a _AdHocCoverage_ object. When a branch have been reached use the objects `branchReached(ID)`method, do this for all branches. After all tests have been run a report should exist in the root of the project with the given methods. A example of the tool in use can be seen below.
+To use the method import the `AdHocCoverage` class. In the start of the method declare a _AdHocCoverage_ object with the function name and the number of branches as arguments. When a branch have been reached use the objects `branchReached(ID)`method, do this for all branches. After all tests have been run a report should exist in the root of the project with the given methods. A example of the tool in use can be seen below.
 ``` Java
 public void run() {
     AdHocCoverage ahc = new AdHocCoverage("run", 10);
@@ -112,6 +112,7 @@ public void run() {
     // MORE CODE
 }
 ```
+The methods that we checked with the coverage tool are linked below.
 
 * [WordList::isNameCompatibleLastType](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/WordList.java#L673)
 * [NameSearch::search](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/NameSearch.java#L48)
@@ -199,6 +200,6 @@ For each team member, how much time was spent in
 ### What are your main takeaways from this project? What did you learn?
 It gave us quite an insight into how code complexity is related to branching. For example, we gave up on testing one function because it had uncovered branches that were nested several layers deep and branched on a singleton. 
 
-One big takeaway was how little actual coverage the softwared had. We tested several metrics but no one had coverage over _30%_. This was a big surprise to us. There was a lot of untested code. 
+One big takeaway was how little actual coverage the software had. We tested several metrics but no one had coverage over _30%_. This was a big surprise to us. There was a lot of untested code. 
 
 
