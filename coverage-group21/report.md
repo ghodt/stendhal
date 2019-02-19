@@ -129,13 +129,16 @@ Report of old coverage: [OLD](https://github.com/ghodt/stendhal/blob/master/cove
 Report of new coverage: [NEW](https://github.com/ghodt/stendhal/blob/master/coverage-group21/New%20coverage%20data.txt)
 
 Test cases added:
-
-git diff ...
+* [WordList.isNameCompatibleLastType test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L385)
+* [NameSearch::search test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/SentenceTest.java#L356)
+* [EquipRandomItemAction::equals test](https://github.com/ghodt/stendhal/blob/f463447fdb6abe4b6bf2bd125f1681c3c152a36c/tests/games/stendhal/client/actions/EquipRandomAmountOfItemActionTest.java)
+* [ShouterMain::main test](https://github.com/ghodt/stendhal/blob/3bb7ddc768d3a0d0b82f49b761bd4fddad19ec28/tests/games/stendhal/ShouterMainTest.java)
+* [Creature::getNearestEnemy test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/server/entity/creature/CreatureTest.java#L68)
+* [ExpressionMatcher::match test](https://github.com/ghodt/stendhal/blob/new-tests/tests/games/stendhal/common/parser/ExpressionMatcherTest.java#L124-L128)
 
 ## Refactoring
 
 *WordList::isNameCompatibleLastType*
-
 This method control if the last expression of a sentence is compatible with a given typeString. This method is only used by another public method, `registerName`. The methods complexity comes from it's repeated checks of equivalent states, i.e. 1+1=2 <-> 2=1+1.
 
 To reduce complexity these double checks if necessary could be put into their own method. They check for one thing and could, therefore, be one method. Example of one such instance.
