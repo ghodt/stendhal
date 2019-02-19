@@ -1,5 +1,6 @@
 ## Project
 Name: Stendhal
+
 URL: https://github.com/ghodt/stendhal
 
 Stendhal is a fully fledged multiplayer online adventures game (MMORPG). It is completely open source (client, server, everything).
@@ -187,5 +188,6 @@ For each team member, how much time was spent in
 ### What are your main takeaways from this project? What did you learn?
 It gave us quite an insight into how code complexity is related to branching. For example, we gave up on testing one function because it had uncovered branches that were nested several layers deep and branched on a singleton. 
 
+One big takeaway was how little actual coverage the softwared had. We tested several metrics but no one had coverage over _30%_. This was a big suprice to us. There was a lot of untested code. 
 
 
