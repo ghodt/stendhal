@@ -184,6 +184,8 @@ It checks all necessary variables are set.
 
 Things that could be done are to at least refactor the parsing and interpretation of the command arguments to its own function. You could have the validation in the refactored function or even divide refactor it to another function still. This would allow the parsing and interpretation code to be cleaner and more understandable. The validation function could also throw an exception, which would be caught by the main function, which would reduce code.
 
+The refactoring will reduce the complexity in the main function. It will be reduced to 2. 1 for the try and 1 for the catch.
+
 
 ## Effort spent
 
