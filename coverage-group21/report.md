@@ -49,7 +49,7 @@ The functions are mostly long since many of them contain a lot of `if` and `else
 
 [Grammar::singular](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L594)\
 `Returns the singular form of the given noun if not already given in the singular form.`\
-The method is considered complex because the outcome very much depends on the input. The method has a lot of `if` statements in most cases for each special case.
+The methods complexity arises from it's extensive _Sting_ comparison. It's a crude search for the singular of a given word. The comparisons creates the high complexity of the function. Very special cases of word structures map to other words. This could be improved with new methods for every section.
 
 [RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)\
 `creates the RPClass definitions, unless this was already done.`\
