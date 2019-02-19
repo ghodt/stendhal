@@ -96,7 +96,22 @@ _OpenClover_ was well documented for several environments. We had no problem usi
 
 ### DYI
 
-Added manual coverage for six functions. a coverage class [AdHocCoverage](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/tools/statistics/AdHocCoverage.java#L20) was created and used to store 
+Added manual coverage for six functions. a coverage class [AdHocCoverage](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/tools/statistics/AdHocCoverage.java#L20) was created and used. It is able to monitor when a methods branches have been reached and reports this to a file. The tool itself is not bounded by a complexity algorithm and is entierly dependent on it's implementation in the given method.
+
+To use the method import the `AdHocCoverage` class. In the start of the method declare a _AdHocCoverage_ object. When a branch have been reached use the objects `branchReached(ID)`method, do this for all branches. After all tests have been run a report should exist in the root of the project with the given methods. A example of the tool in use can be seen below.
+``` Java
+public void run() {
+    AdHocCoverage ahc = new AdHocCoverage("run", 10);
+    
+    // CODE
+    
+    if() {  // Branch 3
+        ahc.branchReached(3);
+    }
+    
+    // MORE CODE
+}
+```
 
 * [WordList::isNameCompatibleLastType](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/WordList.java#L673)
 * [NameSearch::search](https://github.com/ghodt/stendhal/blob/new-tests/src/games/stendhal/common/parser/NameSearch.java#L48)
@@ -105,9 +120,6 @@ Added manual coverage for six functions. a coverage class [AdHocCoverage](https:
 * [Creature::getNearestEnemy](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/server/entity/creature/Creature.java#L696)
 * [ExpressionMatcher::match](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/common/parser/ExpressionMatcher.java#L305)
 
-
-What kinds of constructs do your tool support, and how accurate is
-it's output?
 
 ### Evaluation
 
@@ -187,6 +199,6 @@ For each team member, how much time was spent in
 ### What are your main takeaways from this project? What did you learn?
 It gave us quite an insight into how code complexity is related to branching. For example, we gave up on testing one function because it had uncovered branches that were nested several layers deep and branched on a singleton. 
 
-One big takeaway was how little actual coverage the softwared had. We tested several metrics but no one had coverage over _30%_. This was a big suprice to us. There was a lot of untested code. 
+One big takeaway was how little actual coverage the softwared had. We tested several metrics but no one had coverage over _30%_. This was a big surprise to us. There was a lot of untested code. 
 
 
