@@ -90,7 +90,7 @@ This method is not well documented, it is impossible by looking at the method al
 
 ### Tools
 
-During the assignment, different tools were used. Among them were _OpenClover_, _IDEA Coverage_, _Jacoco_. Ultimately OpenClover was our favourite and the one we used to get the final measurements.
+During the assignment, different tools were used. Among them were [_OpenClover_](https://openclover.org/), _IDEA Coverage_, [_Jacoco_](https://www.eclemma.org/jacoco/). Ultimately OpenClover was our favourite and the one we used to get the final measurements.
 
 _OpenClover_ was well documented for several environments. We had no problem using the tool together with our project and the results of the report could easily be understood.
 
@@ -104,7 +104,6 @@ Added manual coverage for six functions. a coverage class [AdHocCoverage](https:
 * [ShouterMain::main](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/bot/shouter/ShouterMain.java#L78)
 * [Creature::getNearestEnemy](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/server/entity/creature/Creature.java#L696)
 * [ExpressionMatcher::match](https://github.com/ghodt/stendhal/blob/ac50efcdd2c949abc3ec5d4e5d25bc8ceed2d8ed/src/games/stendhal/common/parser/ExpressionMatcher.java#L305)
-
 
 
 What kinds of constructs do your tool support, and how accurate is
