@@ -102,13 +102,11 @@ To use the method import the `AdHocCoverage` class. In the start of the method d
 ``` Java
 public void run() {
     AdHocCoverage ahc = new AdHocCoverage("run", 10);
-    
     // CODE
-    
-    if() {  // Branch 3
+    if(x = 2) {  // Branch 3
         ahc.branchReached(3);
+        // CODE
     }
-    
     // MORE CODE
 }
 ```
