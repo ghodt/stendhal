@@ -123,9 +123,9 @@ public void run() {
 
 ### Evaluation
 
-Report of old coverage: [link]
+Report of old coverage: [OLD](https://github.com/ghodt/stendhal/blob/master/coverage-group21/Old%20coverage%20data.txt)
 
-Report of new coverage: [link]
+Report of new coverage: [NEW](https://github.com/ghodt/stendhal/blob/master/coverage-group21/New%20coverage%20data.txt)
 
 Test cases added:
 
@@ -139,7 +139,7 @@ This method control if the last expression of a sentence is compatible with a gi
 
 To reduce complexity these double checks if necessary could be put into their own method. They check for one thing and could, therefore, be one method. Example of one such instance.
 
-```
+``` Java
 if (lastType.getTypeString().startsWith(typeString)) {
     return true;
 }
