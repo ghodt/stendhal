@@ -1,0 +1,91 @@
+Below are the coverage results when using the ad-hoc coverage tool we developed after adding the new tests.
+
+Creature::getNearestEnemy:
+Coverage: 0,889 %
+Branches: 9
+Reached: 8
+#
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+ExpressionMatcher::match:
+Coverage: 0,857 %
+Branches: 14
+Reached: 12
+#
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+
+
+WordList::isNameCompatibleLastType:
+Coverage: 0.714 %
+Branches: 14
+Reached: 10
+#
+0
+1
+2
+4
+5
+7
+8
+10
+12
+13
+
+
+NameSearch::search:
+Coverage: 0.789 %
+Branches: 19
+Reached: 15
+#
+0
+1
+2
+3
+4
+5
+6
+7
+8
+10
+12
+15
+16
+17
+18
+
+
+EquipRandomAmountOfItems::equals:
+Coverage: 0.143 %
+Branches: 7
+Reached: 1
+#
+0
+
+
+ShouterMain::main:
+Coverage: 0.091 %
+Branches: 11
+Reached: 1
+#
+0
+
+
