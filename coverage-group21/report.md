@@ -51,6 +51,7 @@ The functions are mostly long since many of them contain a lot of `if` and `else
 `Returns the singular form of the given noun if not already given in the singular form.`\
 The methods complexity arises from it's extensive _Sting_ comparison. It's a crude search for the singular of a given word. The comparisons creates the high complexity of the function. Very special cases of word structures map to other words. This could be improved with new methods for every section.
 
+
 [RPClassGenerator::createRPClassesWithoutBaking](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/engine/RPClassGenerator.java#L95)\
 `creates the RPClass definitions, unless this was already done.`\
 This is a creation method for a class object. It contains a lot of `if`statements because it controls if its input as already been initialized. First, it has a control section that makes sure it has not been initiated already, but it still needs to control every single method.
@@ -58,19 +59,29 @@ This is a creation method for a class object. It contains a lot of `if`statement
 
 [CreaturesXMLLoader::startElement](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/server/core/config/CreaturesXMLLoader.java#L173)\
 `<no comments>`\
-Very hard to get a grasp on this method. This method is an `@overide` of DefaultHandler interface. This class is for processing an XML-file. Depending on what is in the file the output of the method will be different. [DefaultHandler documentations](http://tutorials.jenkov.com/java-xml/sax-defaulthandler.html)
+Very hard to get a grasp on this method. This method is an `@overide` of DefaultHandler interface. This class is for processing an XML-file [DefaultHandler documentations](http://tutorials.jenkov.com/java-xml/sax-defaulthandler.html). The function checks the `qName` for string literals, and sets the corresponding value.
+
+
+
 
 [Grammar::plural](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/grammar/Grammar.java#L466)\
 `Returns the plural form of the given noun if not already given in the plural form.`\
 The function takes a string with a noun as an argument and returns the plural form of the word. The function checks if the noun ends with a certain suffix and then changes the suffix to the plural form and returns that. This function probably has to be long, since different suffixes have different plural forms, and you need to check all of them. The function is easy to understand, and the high complexity comes from having a lot of `else if`-statements. Not much refactoring could be done.
 
+
 [RPEntity::onChangedAdded](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/client/entity/RPEntity.java#L1134)\
 `The object added/changed attribute(s).`\
 The function has something to do with changes made to objects in the game. The function has the above comment above the declaration, but other than that it has no documentation and is very hard to understand. The function seems to deal with changes in a lot of different objects, so splitting the function into separate smaller functions for different objects and documenting the code better would make it easier to understand.
 
+The function takes an object and a set of changes that needs to be done for that object. Most changes involves setting a property of the instance with values that are given directly by the `changes` data strucuture. Other call functions with the values from `changes`. If `inAdd` (attribute in the superclass) is set, then the function will only executer `onChangedAdded` on the superclass and then exit immediately.
+
+
 [SentenceImplementation::mergeTwoWordExpressions](https://github.com/ghodt/stendhal/blob/master/src/games/stendhal/common/parser/SentenceImplementation.java#L493)\
 `Merge two-word expressions into single expressions.`\
 The function merges words, but it’s not clear why. The function is somewhat documented, but it’s hard to understand for someone who doesn’t know about how sentences are handled and parsed in the code. It’s hard to tell how the function could be refactored since it’s hard to understand.
+
+The function will iterate through all the expressions in the `expressions` attribute. It'll merge each consecutive expression, as long as the expression's break flag isn't set or it's a joker expression. Depending on the type of the expression, different merging strategies will take place, and delimiters will be added.
+
 
 ### Are exceptions taken into account in the given measurements?
 
