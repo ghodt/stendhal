@@ -1,4 +1,7 @@
 ## Project
+
+Group contributors: [Fredrik Pihlqvist](https://github.com/Pihlqvist), [Emma Good](https://github.com/ghodt), [Ted Klein Bergman](https://github.com/Naxaes) 
+
 Name: Stendhal
 
 URL: https://github.com/ghodt/stendhal
